@@ -39,6 +39,37 @@ header {
   box-shadow: var(--shadow);
   color: var(--logo-stroke);
 }
+
+/* Text Logo */
+.brand-logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  gap: 0;
+}
+.logo-p {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--pri);
+  line-height: 0.85;
+  letter-spacing: -2px;
+}
+.logo-betoni {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--ink);
+  margin-top: -2px;
+}
+.brand-logo-text.small .logo-p {
+  font-size: 28px;
+}
+.brand-logo-text.small .logo-betoni {
+  font-size: 8px;
+  letter-spacing: 2px;
+}
 .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
 .nav a { color: var(--ink); opacity: 0.95; }
 .nav a:hover { opacity: 1; }
