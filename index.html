@@ -68,7 +68,7 @@
     section{padding:44px 0;border-top:1px solid var(--line)}
     h2{font-size:clamp(22px,3vw,32px);margin:0 0 6px}
     .mut{color:var(--mut)}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     .card{background:linear-gradient(180deg,#0d1922,#0b141b);border:1px solid #1a2a36;border-radius:16px;overflow:hidden}
     .card .b{padding:16px}
     .card h3{margin:0 0 6px;font-size:18px}
@@ -99,13 +99,14 @@
 
     /* Responsive */
     @media (max-width:1000px){.cards{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr 1fr}.areas{grid-template-columns:1fr 1fr}.cols-2{grid-template-columns:1fr}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
     @media (max-width:920px){
       /* Hide desktop nav; show hamburger & drawer */
       .nav ul, header .btn{display:none}
       .hamburger{display:inline-flex}
       .mobile-drawer, .scrim{display:block}
     }
-    @media (max-width:640px){.cards{grid-template-columns:1fr}.process{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.process{grid-template-columns:1fr 1fr}}
     
     /* Prevent scroll when menu open */
     body.noscroll{overflow:hidden}
@@ -182,16 +183,14 @@
     <div class="container wrap">
       <span class="pill">Maksuton kartoituskäynti · Pirkanmaa</span>
       <h1>Betonilattiat ja lattiavalut Pirkanmaalla – huippulaatu, siisti työ, sovitut aikataulut</h1>
-      <p>Pirkanmaan Betonilattiat toteuttaa kestävät ja viimeistellyt betonilattiat omakotitaloihin, autotalleihin, varastoihin ja tuotantotiloihin. Keskitymme selkeään viestintään, siistiin työjälkeen ja dokumentoituun luovutukseen.</p>
+      <p>Pirkanmaan Betonilattiat toteuttaa kestävät ja viimeistellyt betonilattiat omakotitaloihin, autotalleihin, varastoihin ja tuotantotiloihin. Keskitymme selkeään viestintään ja siistiin työjälkeen.</p>
       <div class="cta">
         <a class="btn" href="#kartoitus">Varaa maksuton kartoitus</a>
         <a class="btn outline" href="#tarjous">Pyydä yhteydenotto</a>
       </div>
       <div class="ribbon">
         <span class="badge">Selkeä prosessi</span>
-        <span class="badge">Dokumentoitu luovutus</span>
         <span class="badge">Paikallinen toimija</span>
-        <span class="badge">24 kk työn takuu</span>
       </div>
     </div>
   </section>
@@ -209,7 +208,7 @@
             <ul class="list">
               <li><span class="tic">✓</span><span>Asuin- ja varastotilat</span></li>
               <li><span class="tic">✓</span><span>Oikea massavalinta ja olosuhteet</span></li>
-              <li><span class="tic">✓</span><span>Selkeä dokumentointi ja ohjeet</span></li>
+              <li><span class="tic">✓</span><span>Selkeät ohjeet ja jälkihoito</span></li>
             </ul>
           </div>
         </article>
@@ -221,17 +220,6 @@
               <li><span class="tic">✓</span><span>Autotallit ja pientyöpajat</span></li>
               <li><span class="tic">✓</span><span>Reunanauhat, suojaukset ja siistiminen</span></li>
               <li><span class="tic">✓</span><span>Jälkihoito- ja kuivumisohjeet</span></li>
-            </ul>
-          </div>
-        </article>
-        <article class="card">
-          <div class="b">
-            <h3>Hionta & kiillotus</h3>
-            <p>Esteettinen ja pölynsidottu pinta sisätiloihin. Parantaa arjen käytettävyyttä ja huollettavuutta.</p>
-            <ul class="list">
-              <li><span class="tic">✓</span><span>Myymälä- ja toimistokohteet</span></li>
-              <li><span class="tic">✓</span><span>Porras- ja aulatilat</span></li>
-              <li><span class="tic">✓</span><span>Kulutuskestävyys ja puhtaanapito</span></li>
             </ul>
           </div>
         </article>
@@ -261,7 +249,7 @@
         <h2>Laatu ja turvallisuus</h2>
         <p class="mut">Käytämme tarkkoja tasolasereita, luotettavia betonimassoja sekä tehokkaita hierre- ja hiontakoneita. Työ tehdään työturvallisuus edellä ja olosuhteet (lämpö, vedottomuus, kosteus) varmistetaan ennen valua ja sen aikana.</p>
         <ul class="list" style="margin-top:8px">
-          <li><span class="tic">✓</span><span>Dokumentoidut työvaiheet ja luovutus</span></li>
+          <li><span class="tic">✓</span><span>Selkeät työvaiheet ja luovutus</span></li>
           <li><span class="tic">✓</span><span>Selkeät jälkihoito-ohjeet</span></li>
           <li><span class="tic">✓</span><span>Kosteusmittausraportti pyydettäessä</span></li>
         </ul>
@@ -284,7 +272,6 @@
         <h2>Maksuton kartoituskäynti</h2>
         <p>Tarjoamme maksuttoman kartoituskäynnin Pirkanmaan alueella. Kartoituksessa tarkistamme alustan, paksuuden, reunanauhat, läpiviennit ja mahdolliset haasteet, jotta saat tarkan tarjouksen ja realistisen aikataulun.</p>
         <ul class="list" style="margin-top:8px">
-          <li><span class="tic">✓</span><span>Ei sitoutumista – saat kirjallisen yhteenvedon</span></li>
           <li><span class="tic">✓</span><span>Suositukset massalle, raudoitukselle ja viimeistelylle</span></li>
           <li><span class="tic">✓</span><span>Mahdollinen kosteuden mittaus ja raportointi</span></li>
         </ul>
