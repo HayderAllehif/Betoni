@@ -14,6 +14,7 @@ function closeMenu() {
   scrim.classList.remove('open');
   document.body.classList.remove('noscroll');
 }
+window.closeMenu = closeMenu; // Make available globally
 
 function openMenu() {
   burger.setAttribute('aria-expanded', 'true');

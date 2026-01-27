@@ -152,6 +152,13 @@ header {
 .mobile-drawer .menu a:hover { background: var(--pri); color: #fff; }
 .mobile-drawer .cta { padding: 0 18px 18px; }
 
+/* Drawer structure for flex */
+.mobile-drawer {
+  display: none;
+  flex-direction: column;
+}
+.mobile-drawer.open { display: flex; }
+
 /* Responsive */
 @media (max-width: 920px) {
   .nav ul, header .btn { display: none; }
