@@ -53,7 +53,7 @@
 
     /* Hero */
     .hero{position:relative;min-height:78vh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
-    .hero::before{content:"";position:absolute;inset:0;z-index:0;background:url('/media/hero-concrete.jpg') center/cover no-repeat;filter:grayscale(.05) contrast(1.05);pointer-events:none}
+    .hero::before{content:"";position:absolute;inset:0;z-index:0;background:url('/media/hero-concrete.jpg') center/cover no-repeat, linear-gradient(135deg, #0d2027 0%, #0a1a20 50%, #051015 100%);filter:grayscale(.05) contrast(1.05);pointer-events:none}
     .hero::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(3,12,16,.38),rgba(3,12,16,.22) 40%,rgba(3,12,16,.55));pointer-events:none}
     .hero .wrap{position:relative;z-index:1;padding:64px 0 44px}
     .hero .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px);font-weight:700}
