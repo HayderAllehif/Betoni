@@ -158,10 +158,38 @@
 
     /* Form */
     .panel{background:var(--panel-bg);border:1px solid var(--card-border);border-radius:16px;padding:18px;transition:all .3s}
+    .form-panel{padding:24px}
+    .form-header{text-align:center;margin-bottom:24px}
+    .form-header h2{margin:12px 0 6px}
+    .form-icon{font-size:42px;display:block}
     .field{display:grid;gap:6px}
-    .in{background:var(--input-bg);border:1px solid var(--card-border);border-radius:12px;color:var(--ink);padding:12px;width:100%;transition:all .3s}
-    .in:focus{outline:none;border-color:var(--pri)}
+    .field-label{font-size:13px;font-weight:600;color:var(--mut)}
+    .in{background:var(--input-bg);border:1px solid var(--card-border);border-radius:12px;color:var(--ink);padding:14px 16px;width:100%;transition:all .3s;font-size:15px}
+    .in:focus{outline:none;border-color:var(--pri);box-shadow:0 0 0 3px rgba(0,151,160,.15)}
+    .in::placeholder{color:var(--mut);opacity:.7}
+    select.in{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+    textarea.in{resize:vertical;min-height:100px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .form-grid .full-width{grid-column:1/-1}
+    .form-footer{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .submit-btn{flex:1;justify-content:center;gap:10px;padding:16px 24px;font-size:16px}
+    .submit-btn svg{transition:transform .2s}
+    .submit-btn:hover svg{transform:translateX(4px)}
+    .whatsapp-btn{background:#25D366;border-color:#25D366;color:#fff;gap:8px}
+    .whatsapp-btn:hover{background:#20bd5a}
+    .form-note{font-size:12px;color:var(--mut);margin-top:16px;text-align:center}
+    .form-success{text-align:center;padding:40px 20px}
+    .success-icon{width:70px;height:70px;background:var(--pri);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:20px;animation:scaleIn .4s ease}
+    .form-success h3{margin:0 0 10px;font-size:24px}
+    .form-success p{color:var(--mut);margin-bottom:24px}
+    @keyframes scaleIn{0%{transform:scale(0)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+    .submit-btn:disabled{opacity:.7;cursor:not-allowed}
+    .submit-btn.loading span{opacity:0}
+    .submit-btn.loading::after{content:"";position:absolute;width:20px;height:20px;border:2px solid transparent;border-top-color:#001a1d;border-radius:50%;animation:spin .6s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .submit-btn{position:relative}
     .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    @media(max-width:640px){.form-grid{grid-template-columns:1fr}}
 
     /* Footer */
     .footer{padding:26px 0;border-top:1px solid var(--line);background:var(--footer-bg);color:var(--mut);transition:all .3s}
@@ -381,22 +409,78 @@
           <a class="btn outline" href="#yhteys">Soita nyt</a>
         </div>
       </div>
-      <div class="panel" id="kartoitus-form">
-        <h2>Pyydä yhteydenotto / varaa kartoitus</h2>
-        <form onsubmit="event.preventDefault(); alert('Kiitos! Otamme sinuun pian yhteyttä.');">
-          <div class="cols-2">
-            <label class="field">Nimi<input class="in" required placeholder="Etunimi Sukunimi"/></label>
-            <label class="field">Puhelin<input class="in" required type="tel" placeholder="040 123 4567"/></label>
-            <label class="field">Sähköposti<input class="in" required type="email" placeholder="nimi@esimerkki.fi"/></label>
-            <label class="field">Kohteen osoite<input class="in" required placeholder="Katu 1, Kaupunki"/></label>
-            <label class="field">Neliöt (m²)<input class="in" required type="number" min="1" placeholder="esim. 65"/></label>
-            <label class="field">Käyttötarkoitus<select class="in"><option>Autotalli</option><option>Varasto</option><option>Asuintila</option><option>Tuotantotila</option></select></label>
-            <label class="field">Toivottu ajankohta<input class="in" type="date"/></label>
-            <label class="field">Lisätiedot<textarea class="in" rows="3" placeholder="Kuvaus kohteesta, mahdolliset haasteet…"></textarea></label>
-            <label class="field">Liitteet (valinnainen)<input class="in" type="file" multiple/></label>
+      <div class="panel form-panel" id="kartoitus-form">
+        <div class="form-header">
+          <span class="form-icon">📋</span>
+          <h2>Pyydä yhteydenotto / varaa kartoitus</h2>
+          <p class="mut">Täytä lomake ja otamme sinuun yhteyttä 24h sisällä.</p>
+        </div>
+        <form action="https://formsubmit.co/ajax/pkslattiat@gmail.com" method="POST" class="contact-form" id="contact-form">
+          <!-- Formsubmit settings -->
+          <input type="hidden" name="_subject" value="Uusi yhteydenotto - Pirkanmaan Betonilattiat">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none">
+          
+          <div class="form-grid">
+            <label class="field">
+              <span class="field-label">Nimi *</span>
+              <input class="in" name="Nimi" required placeholder="Etunimi Sukunimi"/>
+            </label>
+            <label class="field">
+              <span class="field-label">Puhelin *</span>
+              <input class="in" name="Puhelin" required type="tel" placeholder="040 123 4567"/>
+            </label>
+            <label class="field">
+              <span class="field-label">Sähköposti *</span>
+              <input class="in" name="Sähköposti" required type="email" placeholder="nimi@esimerkki.fi"/>
+            </label>
+            <label class="field">
+              <span class="field-label">Kohteen osoite *</span>
+              <input class="in" name="Osoite" required placeholder="Katu 1, Kaupunki"/>
+            </label>
+            <label class="field">
+              <span class="field-label">Neliöt (m²) *</span>
+              <input class="in" name="Neliöt" required type="number" min="1" placeholder="esim. 65"/>
+            </label>
+            <label class="field">
+              <span class="field-label">Käyttötarkoitus</span>
+              <select class="in" name="Käyttötarkoitus">
+                <option value="Autotalli">Autotalli</option>
+                <option value="Varasto">Varasto</option>
+                <option value="Asuintila">Asuintila</option>
+                <option value="Tuotantotila">Tuotantotila</option>
+                <option value="Muu">Muu</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field-label">Toivottu ajankohta</span>
+              <input class="in" name="Ajankohta" type="date"/>
+            </label>
+            <label class="field full-width">
+              <span class="field-label">Lisätiedot</span>
+              <textarea class="in" name="Lisätiedot" rows="4" placeholder="Kuvaus kohteesta, mahdolliset haasteet, erityistoiveet…"></textarea>
+            </label>
           </div>
-          <div class="cta-row"><button class="btn" type="submit">Lähetä</button><a class="btn outline" href="https://wa.me/358404157490" target="_blank" rel="noopener">WhatsApp</a></div>
+          <div class="form-footer">
+            <button class="btn submit-btn" type="submit">
+              <span>Lähetä viesti</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+            <a class="btn outline whatsapp-btn" href="https://wa.me/358404157490" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+          <p class="form-note">* Pakolliset kentät</p>
         </form>
+        <!-- Success Message (hidden by default) -->
+        <div class="form-success" id="form-success" style="display:none">
+          <div class="success-icon">✓</div>
+          <h3>Kiitos yhteydenotostasi!</h3>
+          <p>Olemme vastaanottaneet viestisi ja otamme sinuun yhteyttä mahdollisimman pian, yleensä 24 tunnin sisällä.</p>
+          <button class="btn outline" onclick="resetForm()">Lähetä uusi viesti</button>
+        </div>
       </div>
     </div>
   </section>
@@ -532,6 +616,51 @@
         setTheme(e.matches ? 'light' : 'dark');
       }
     });
+    
+    // Contact Form AJAX Submit
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
+      
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          // Show success message
+          contactForm.style.display = 'none';
+          formSuccess.style.display = 'block';
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        alert('Virhe lähetyksessä. Yritä uudelleen tai soita meille.');
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+      }
+    });
+    
+    // Reset form function
+    function resetForm() {
+      contactForm.reset();
+      contactForm.style.display = 'block';
+      formSuccess.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+    }
   </script>
 </body>
 </html>
