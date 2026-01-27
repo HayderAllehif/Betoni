@@ -43,8 +43,8 @@
     <div class="container">
       <div class="filter-buttons">
         <button class="filter-btn active" data-filter="all">Kaikki</button>
-        <button class="filter-btn" data-filter="autotalli">Autotallit</button>
-        <button class="filter-btn" data-filter="varasto">Varastot</button>
+        <button class="filter-btn" data-filter="valu">Valutyöt</button>
+        <button class="filter-btn" data-filter="hierto">Teräshierto</button>
         <button class="filter-btn" data-filter="asuintila">Asuintilat</button>
         <button class="filter-btn" data-filter="tuotanto">Tuotanto</button>
       </div>
@@ -56,10 +56,10 @@
     <div class="container">
       <div class="gallery-grid">
         
-        <!-- Item 1 -->
-        <div class="gallery-item" data-category="autotalli">
+        <!-- Item 1: Raudoitus ja valu -->
+        <div class="gallery-item" data-category="valu">
           <div class="gallery-image">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" alt="Autotalli Nokia" loading="lazy">
+            <img src="media/gallery/01-raudoitus-valu.jpg" alt="Raudoitus ja betonivalu" loading="lazy">
             <div class="gallery-overlay">
               <button class="zoom-btn" onclick="openLightbox(this)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
@@ -67,33 +67,16 @@
             </div>
           </div>
           <div class="gallery-info">
-            <span class="gallery-tag">Autotalli</span>
-            <h3>Autotalli, Nokia</h3>
-            <p>42 m² · Teräshierretty pinta</p>
+            <span class="gallery-tag">Valutyö</span>
+            <h3>Perustuksen valu</h3>
+            <p>Raudoitus ja lattialämmitysputket valmiina</p>
           </div>
         </div>
 
-        <!-- Item 2 -->
-        <div class="gallery-item" data-category="varasto">
-          <div class="gallery-image">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Varasto Tampere" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Varasto</span>
-            <h3>Varastotila, Tampere</h3>
-            <p>120 m² · Valu ja hionta</p>
-          </div>
-        </div>
-
-        <!-- Item 3 -->
+        <!-- Item 2: Asuintila valu -->
         <div class="gallery-item" data-category="asuintila">
           <div class="gallery-image">
-            <img src="https://images.unsplash.com/photo-1617791160536-598cf32026fb?auto=format&fit=crop&w=800&q=80" alt="Asuintila Ylöjärvi" loading="lazy">
+            <img src="media/gallery/02-asuintila-valu.jpg" alt="Asuintilan betonilattia" loading="lazy">
             <div class="gallery-overlay">
               <button class="zoom-btn" onclick="openLightbox(this)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
@@ -102,15 +85,15 @@
           </div>
           <div class="gallery-info">
             <span class="gallery-tag">Asuintila</span>
-            <h3>Asuintila, Ylöjärvi</h3>
-            <p>75 m² · Lattialämmitys + valu</p>
+            <h3>Omakotitalo</h3>
+            <p>Valmis betonilattia ennen pintakäsittelyä</p>
           </div>
         </div>
 
-        <!-- Item 4 -->
-        <div class="gallery-item" data-category="autotalli">
+        <!-- Item 3: Hionta -->
+        <div class="gallery-item" data-category="hierto">
           <div class="gallery-image">
-            <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=800&q=80" alt="Autotalli Pirkkala" loading="lazy">
+            <img src="media/gallery/03-hionta.jpg" alt="Lattian hionta" loading="lazy">
             <div class="gallery-overlay">
               <button class="zoom-btn" onclick="openLightbox(this)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
@@ -118,16 +101,16 @@
             </div>
           </div>
           <div class="gallery-info">
-            <span class="gallery-tag">Autotalli</span>
-            <h3>Autotalli, Pirkkala</h3>
-            <p>38 m² · Teräshierretty</p>
+            <span class="gallery-tag">Hionta</span>
+            <h3>Betonin hionta</h3>
+            <p>Lattian hionta ja tasoitus</p>
           </div>
         </div>
 
-        <!-- Item 5 -->
+        <!-- Item 4: Tuotantotila hierto -->
         <div class="gallery-item" data-category="tuotanto">
           <div class="gallery-image">
-            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80" alt="Tuotantotila Kangasala" loading="lazy">
+            <img src="media/gallery/04-tuotanto-hierto.jpg" alt="Tuotantotilan lattia" loading="lazy">
             <div class="gallery-overlay">
               <button class="zoom-btn" onclick="openLightbox(this)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
@@ -136,15 +119,15 @@
           </div>
           <div class="gallery-info">
             <span class="gallery-tag">Tuotanto</span>
-            <h3>Tuotantotila, Kangasala</h3>
-            <p>250 m² · Teollisuuslattia</p>
+            <h3>Teollisuushalli</h3>
+            <p>Teräshierretty teollisuuslattia</p>
           </div>
         </div>
 
-        <!-- Item 6 -->
-        <div class="gallery-item" data-category="varasto">
+        <!-- Item 5: Ulkolattia -->
+        <div class="gallery-item" data-category="tuotanto">
           <div class="gallery-image">
-            <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=800&q=80" alt="Varasto Lempäälä" loading="lazy">
+            <img src="media/gallery/05-ulkolattia.jpg" alt="Ulkolattia" loading="lazy">
             <div class="gallery-overlay">
               <button class="zoom-btn" onclick="openLightbox(this)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
@@ -152,15 +135,151 @@
             </div>
           </div>
           <div class="gallery-info">
-            <span class="gallery-tag">Varasto</span>
-            <h3>Varasto, Lempäälä</h3>
-            <p>85 m² · Pinnoitettu lattia</p>
+            <span class="gallery-tag">Tuotanto</span>
+            <h3>Lastauslaituri</h3>
+            <p>Ulkotilan betonilattia</p>
+          </div>
+        </div>
+
+        <!-- Item 6: Lattiakaivo -->
+        <div class="gallery-item" data-category="hierto">
+          <div class="gallery-image">
+            <img src="media/gallery/06-lattiakaivo.jpg" alt="Lattiakaivo" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="zoom-btn" onclick="openLightbox(this)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <span class="gallery-tag">Viimeistely</span>
+            <h3>Lattiakaivo</h3>
+            <p>Siisti viimeistely kaivon ympärillä</p>
+          </div>
+        </div>
+
+        <!-- Item 7: Autotalli hierto -->
+        <div class="gallery-item" data-category="hierto">
+          <div class="gallery-image">
+            <img src="media/gallery/07-autotalli-hierto.jpg" alt="Autotallin lattia" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="zoom-btn" onclick="openLightbox(this)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <span class="gallery-tag">Teräshierto</span>
+            <h3>Autotalli</h3>
+            <p>Teräshierretty pinta</p>
+          </div>
+        </div>
+
+        <!-- Item 8: Iso asuintila -->
+        <div class="gallery-item" data-category="asuintila">
+          <div class="gallery-image">
+            <img src="media/gallery/08-iso-asuintila.jpg" alt="Suuri asuintila" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="zoom-btn" onclick="openLightbox(this)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <span class="gallery-tag">Asuintila</span>
+            <h3>Omakotitalo</h3>
+            <p>Laaja asuintilan lattia</p>
+          </div>
+        </div>
+
+        <!-- Item 9: Iso valu -->
+        <div class="gallery-item" data-category="valu">
+          <div class="gallery-image">
+            <img src="media/gallery/09-iso-valu.jpg" alt="Suuri betonivalu" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="zoom-btn" onclick="openLightbox(this)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <span class="gallery-tag">Valutyö</span>
+            <h3>Suuri betonivalu</h3>
+            <p>Betoniauto ja pumppuauto työssä</p>
+          </div>
+        </div>
+
+        <!-- Item 10: Hiertokone työssä -->
+        <div class="gallery-item" data-category="hierto">
+          <div class="gallery-image">
+            <img src="media/gallery/10-hiertokone.jpg" alt="Hiertokone työssä" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="zoom-btn" onclick="openLightbox(this)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <span class="gallery-tag">Teräshierto</span>
+            <h3>Teräshierto</h3>
+            <p>Hiertokone tasoittaa pinnan</p>
+          </div>
+        </div>
+
+        <!-- Item 11: Moderni asuintila -->
+        <div class="gallery-item" data-category="asuintila">
+          <div class="gallery-image">
+            <img src="media/gallery/11-moderni-asuintila.jpg" alt="Moderni asuintila" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="zoom-btn" onclick="openLightbox(this)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <span class="gallery-tag">Asuintila</span>
+            <h3>Moderni omakotitalo</h3>
+            <p>Avara olohuone ja ruokailutila</p>
+          </div>
+        </div>
+
+        <!-- Item 12: Ulkolaatta valmis -->
+        <div class="gallery-item" data-category="valu">
+          <div class="gallery-image">
+            <img src="media/gallery/12-ulkolaatta.jpg" alt="Valmis ulkolaatta" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="zoom-btn" onclick="openLightbox(this)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <span class="gallery-tag">Valutyö</span>
+            <h3>Perustuslaatta</h3>
+            <p>Valmis laatta kesäpäivänä</p>
+          </div>
+        </div>
+
+        <!-- Item 13: Varasto lattia -->
+        <div class="gallery-item" data-category="asuintila">
+          <div class="gallery-image">
+            <img src="media/gallery/13-varasto-lattia.jpg" alt="Varaston lattia" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="zoom-btn" onclick="openLightbox(this)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <span class="gallery-tag">Asuintila</span>
+            <h3>Varastotila</h3>
+            <p>Tasainen betonilattia</p>
           </div>
         </div>
 
       </div>
 
-      <!-- Empty state for when you add real images -->
+      <!-- Empty state -->
       <div class="gallery-empty" id="gallery-empty" style="display:none">
         <div class="empty-icon">📷</div>
         <h3>Ei kuvia tässä kategoriassa</h3>
@@ -218,23 +337,19 @@
   </footer>
 
   <script>
-    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Filter functionality
+    // Filter
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
     const emptyState = document.getElementById('gallery-empty');
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Update active button
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         const filter = btn.dataset.filter;
         let visibleCount = 0;
-
         galleryItems.forEach(item => {
           if (filter === 'all' || item.dataset.category === filter) {
             item.style.display = 'block';
@@ -244,8 +359,6 @@
             item.style.display = 'none';
           }
         });
-
-        // Show empty state if no items
         emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
       });
     });
@@ -262,13 +375,9 @@
       const img = item.querySelector('img');
       const title = item.querySelector('h3').textContent;
       const desc = item.querySelector('.gallery-info p').textContent;
-
-      // Get all visible images
-      visibleImages = Array.from(document.querySelectorAll('.gallery-item'))
-        .filter(i => i.style.display !== 'none');
+      visibleImages = Array.from(document.querySelectorAll('.gallery-item')).filter(i => i.style.display !== 'none');
       currentIndex = visibleImages.indexOf(item);
-
-      lightboxImg.src = img.src.replace('w=800', 'w=1600');
+      lightboxImg.src = img.src;
       lightboxCaption.innerHTML = `<strong>${title}</strong><br>${desc}`;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -283,27 +392,20 @@
       currentIndex += direction;
       if (currentIndex < 0) currentIndex = visibleImages.length - 1;
       if (currentIndex >= visibleImages.length) currentIndex = 0;
-
       const item = visibleImages[currentIndex];
       const img = item.querySelector('img');
       const title = item.querySelector('h3').textContent;
       const desc = item.querySelector('.gallery-info p').textContent;
-
-      lightboxImg.src = img.src.replace('w=800', 'w=1600');
+      lightboxImg.src = img.src;
       lightboxCaption.innerHTML = `<strong>${title}</strong><br>${desc}`;
     }
 
-    // Close on ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') navigateLightbox(-1);
       if (e.key === 'ArrowRight') navigateLightbox(1);
     });
-
-    // Close on backdrop click
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   </script>
 </body>
 </html>
