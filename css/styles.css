@@ -1,0 +1,160 @@
+/* ========================================
+   Base & Layout Styles
+   ======================================== */
+
+/* Base */
+* { box-sizing: border-box; }
+html { transition: background 0.3s; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  transition: background 0.3s, color 0.3s;
+}
+a { color: var(--accent); text-decoration: none; }
+img { max-width: 100%; display: block; }
+.container { width: min(1200px, 92%); margin-inline: auto; }
+body.noscroll { overflow: hidden; }
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: saturate(160%) blur(8px);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s;
+}
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 800; }
+.brand-logo {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: var(--logo-gradient);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+  color: var(--logo-stroke);
+}
+.nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+.nav a { color: var(--ink); opacity: 0.95; }
+.nav a:hover { opacity: 1; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--pri);
+  color: #001a1d;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.btn:hover { background: var(--pri-2); }
+.btn.outline { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.theme-toggle:hover { background: var(--pri); border-color: var(--pri); }
+.theme-toggle:hover svg { stroke: var(--bg); }
+.theme-toggle svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; }
+.sun-icon { display: none; }
+.moon-icon { display: block; }
+[data-theme="light"] .sun-icon { display: block; }
+[data-theme="light"] .moon-icon { display: none; }
+
+/* Mobile Hamburger */
+.hamburger {
+  display: none;
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.hamburger span {
+  position: relative;
+  display: block;
+  width: 20px; height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+.hamburger span::before,
+.hamburger span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 20px; height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger span::before { top: -6px; }
+.hamburger span::after { top: 6px; }
+.hamburger[aria-expanded="true"] span { background: transparent; }
+.hamburger[aria-expanded="true"] span::before { transform: rotate(45deg); top: 0; }
+.hamburger[aria-expanded="true"] span::after { transform: rotate(-45deg); top: 0; }
+
+/* Mobile Drawer */
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  z-index: 98;
+  display: none;
+}
+.scrim.open { opacity: 1; pointer-events: auto; }
+.mobile-drawer {
+  position: fixed;
+  top: 0; right: 0;
+  height: 100vh;
+  width: min(86vw, 340px);
+  background: var(--drawer-bg);
+  border-left: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  transform: translateX(100%);
+  transition: transform 0.25s;
+  z-index: 99;
+  display: none;
+}
+.mobile-drawer.open { transform: translateX(0); }
+.mobile-drawer .menu { list-style: none; margin: 0; padding: 18px; display: grid; gap: 8px; }
+.mobile-drawer .menu a {
+  display: block;
+  padding: 12px 10px;
+  border-radius: 10px;
+  background: var(--drawer-item);
+  border: 1px solid var(--card-border);
+  color: var(--ink);
+}
+.mobile-drawer .menu a:hover { background: var(--pri); color: #fff; }
+.mobile-drawer .cta { padding: 0 18px 18px; }
+
+/* Responsive */
+@media (max-width: 920px) {
+  .nav ul, header .btn { display: none; }
+  .hamburger { display: inline-flex; }
+  .mobile-drawer, .scrim { display: block; }
+}

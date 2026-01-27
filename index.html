@@ -9,241 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* Dark Mode (Default) */
-    :root{
-      --bg:#0b141a; --ink:#eaf1f3; --mut:#b7c7cd; --pri:#00b3bd; --pri-2:#0097a0; --card:#101922; --line:#1f2d39; --accent:#8de7ee;
-      --shadow:0 20px 50px rgba(0,0,0,.35);
-      --header-bg:rgba(9,16,22,.85);
-      --card-bg:linear-gradient(180deg,#0d1922,#0b141b);
-      --card-border:#1a2a36;
-      --panel-bg:#0e1821;
-      --input-bg:#0a141c;
-      --step-bg:#0e1a22;
-      --area-bg:#0d1a22;
-      --footer-bg:#0a1218;
-      --drawer-bg:#0c151c;
-      --drawer-item:#0e1a22;
-      --hero-overlay:linear-gradient(135deg,rgba(0,20,30,.85) 0%,rgba(0,40,50,.7) 50%,rgba(0,60,70,.6) 100%);
-      --hero-text:#eaf1f3;
-      --hero-subtext:#c8d8dc;
-      --pill-bg:rgba(0,179,189,.15);
-      --pill-border:rgba(0,179,189,.4);
-      --pill-text:#8de7ee;
-      --badge-bg:rgba(0,0,0,.3);
-      --badge-border:rgba(255,255,255,.15);
-      --badge-text:#e6f6f8;
-      --badge-check-bg:rgba(0,179,189,.3);
-      --logo-gradient:radial-gradient(120% 140% at 10% 10%, #0bd1de, #06323a 60%, #03181d 100%);
-      --logo-stroke:#8de7ee;
-      --faq-bg:#0e1a22;
-      --faq-border:#1a2a36;
-    }
-    /* Light Mode */
-    [data-theme="light"]{
-      --bg:#f5f7f9; --ink:#1a2a30; --mut:#5a6a70; --pri:#0097a0; --pri-2:#007a82; --card:#ffffff; --line:#e0e5e8; --accent:#006b70;
-      --shadow:0 10px 40px rgba(0,0,0,.1);
-      --header-bg:rgba(255,255,255,.9);
-      --card-bg:linear-gradient(180deg,#ffffff,#f8fafb);
-      --card-border:#e0e5e8;
-      --panel-bg:#ffffff;
-      --input-bg:#f5f7f9;
-      --step-bg:#ffffff;
-      --area-bg:#f0f4f6;
-      --footer-bg:#e8eef0;
-      --drawer-bg:#ffffff;
-      --drawer-item:#f5f7f9;
-      --hero-overlay:linear-gradient(135deg,rgba(255,255,255,.92) 0%,rgba(240,248,250,.88) 50%,rgba(230,245,248,.85) 100%);
-      --hero-text:#1a2a30;
-      --hero-subtext:#4a5a60;
-      --pill-bg:rgba(0,151,160,.12);
-      --pill-border:rgba(0,151,160,.3);
-      --pill-text:#007a82;
-      --badge-bg:rgba(0,151,160,.1);
-      --badge-border:rgba(0,151,160,.25);
-      --badge-text:#006b70;
-      --badge-check-bg:rgba(0,151,160,.2);
-      --logo-gradient:radial-gradient(120% 140% at 10% 10%, #00b3bd, #e0f4f5 60%, #f0fafb 100%);
-      --logo-stroke:#007a82;
-      --faq-bg:#ffffff;
-      --faq-border:#e0e5e8;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink)}
-    a{color:var(--accent);text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{width:min(1200px,92%);margin-inline:auto}
-    /* Header */
-    header{position:sticky;top:0;z-index:100;backdrop-filter:saturate(160%) blur(8px);background:var(--header-bg);border-bottom:1px solid var(--line);transition:background .3s}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
-    .brand-logo{inline-size:38px;block-size:38px;border-radius:10px;background:var(--logo-gradient);display:grid;place-items:center;box-shadow:var(--shadow);transition:background .3s;color:var(--logo-stroke)}
-    .nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
-    .nav a{color:var(--ink);opacity:.95}
-    .nav a:hover{opacity:1}
-    .btn{display:inline-flex;align-items:center;gap:10px;background:var(--pri);color:#001a1d;border:none;padding:14px 20px;border-radius:12px;font-weight:800;letter-spacing:.2px;cursor:pointer;box-shadow:var(--shadow)}
-    .btn:hover{background:var(--pri-2)}
-    .btn.outline{background:transparent;color:var(--ink);border:1px solid var(--line)}
-    
-    /* Theme Toggle */
-    .theme-toggle{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:transparent;cursor:pointer;transition:all .3s}
-    .theme-toggle:hover{background:var(--pri);border-color:var(--pri)}
-    .theme-toggle:hover svg{stroke:var(--bg)}
-    .theme-toggle svg{width:20px;height:20px;stroke:var(--ink);fill:none;transition:all .3s}
-    .sun-icon{display:none}
-    .moon-icon{display:block}
-    [data-theme="light"] .sun-icon{display:block}
-    [data-theme="light"] .moon-icon{display:none}
-
-    /* NEW: Mobile hamburger */
-    .hamburger{display:none;inline-size:42px;block-size:42px;border-radius:10px;border:1px solid var(--line);background:transparent;align-items:center;justify-content:center;cursor:pointer}
-    .hamburger span{position:relative;display:block;inline-size:20px;block-size:2px;background:var(--ink);border-radius:2px;transition:background .3s}
-    .hamburger span::before,.hamburger span::after{content:"";position:absolute;left:0;inline-size:20px;block-size:2px;background:var(--ink);border-radius:2px;transition:all .3s}
-    .hamburger span::before{top:-6px}
-    .hamburger span::after{top:6px}
-    .hamburger[aria-expanded="true"] span{background:transparent}
-    .hamburger[aria-expanded="true"] span::before{transform:rotate(45deg);top:0}
-    .hamburger[aria-expanded="true"] span::after{transform:rotate(-45deg);top:0}
-
-    /* Mobile drawer */
-    .scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:98;display:none}
-    .scrim.open{opacity:1;pointer-events:auto}
-    .mobile-drawer{position:fixed;top:0;right:0;height:100vh;width:min(86vw,340px);background:var(--drawer-bg);border-left:1px solid var(--card-border);box-shadow:var(--shadow);transform:translateX(100%);transition:transform .25s ease;z-index:99;display:none}
-    .mobile-drawer.open{transform:translateX(0)}
-    .mobile-drawer .menu{list-style:none;margin:0;padding:18px;display:grid;gap:8px}
-    .mobile-drawer .menu a{display:block;padding:12px 10px;border-radius:10px;background:var(--drawer-item);border:1px solid var(--card-border);color:var(--ink)}
-    .mobile-drawer .menu a:hover{background:var(--pri);color:#fff}
-    .mobile-drawer .cta{padding:0 18px 18px}
-
-    /* Hero */
-    .hero{position:relative;min-height:85vh;display:grid;align-items:center;overflow:hidden;isolation:isolate}
-    .hero::before{content:"";position:absolute;inset:0;z-index:0;background:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;filter:grayscale(.2) contrast(1.15) brightness(.85);pointer-events:none}
-    .hero::after{content:"";position:absolute;inset:0;z-index:0;background:var(--hero-overlay);pointer-events:none;transition:background .3s}
-    .hero .wrap{position:relative;z-index:1;padding:80px 0 60px;max-width:900px}
-    .hero .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:var(--pill-bg);border:1px solid var(--pill-border);backdrop-filter:blur(8px);font-weight:700;font-size:14px;color:var(--pill-text);text-transform:uppercase;letter-spacing:1px;transition:all .3s}
-    .hero h1{font-size:clamp(36px,5vw,62px);line-height:1.1;margin:20px 0 16px;font-weight:800;color:var(--hero-text);transition:color .3s}
-    .hero p{color:var(--hero-subtext);font-size:clamp(16px,1.8vw,20px);max-width:750px;line-height:1.6;transition:color .3s}
-    .hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
-    .hero .btn{padding:16px 28px;font-size:16px;box-shadow:0 8px 30px rgba(0,179,189,.3)}
-    .hero .btn.outline{border-color:var(--line);backdrop-filter:blur(4px);color:var(--hero-text)}
-
-    .ribbon{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-    .badge{display:inline-flex;align-items:center;gap:8px;background:var(--badge-bg);border:1px solid var(--badge-border);padding:10px 14px;border-radius:10px;color:var(--badge-text);font-weight:600;font-size:13px;backdrop-filter:blur(6px);transition:all .3s}
-    .badge::before{content:"✓";display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:var(--badge-check-bg);border-radius:50%;font-size:11px;color:var(--pill-text);transition:all .3s}
-
-    /* Section */
-    section{padding:44px 0;border-top:1px solid var(--line)}
-    h2{font-size:clamp(22px,3vw,32px);margin:0 0 6px}
-    .mut{color:var(--mut)}
-    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;transition:all .3s}
-    .card .b{padding:16px}
-    .card h3{margin:0 0 6px;font-size:18px}
-    .list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
-    .list li{display:flex;gap:10px}
-    .tic{inline-size:18px;block-size:18px;border-radius:6px;background:var(--pri);color:#fff;display:grid;place-items:center;flex:0 0 18px;font-size:11px}
-
-    /* Process */
-    .process{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-    .step{background:var(--step-bg);border:1px solid var(--card-border);border-radius:14px;padding:14px;transition:all .3s}
-    .step .num{font-weight:800;color:var(--accent);font-size:12px}
-
-    /* Two Cols */
-    .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-
-    /* Areas */
-    .areas{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-    .areas a{display:block;padding:12px 14px;border-radius:12px;background:var(--area-bg);border:1px solid var(--card-border);color:var(--ink);transition:all .3s}
-    .areas a:hover{background:var(--pri);color:#fff}
-
-    /* Form */
-    .panel{background:var(--panel-bg);border:1px solid var(--card-border);border-radius:16px;padding:18px;transition:all .3s}
-    .form-panel{padding:24px}
-    .form-header{text-align:center;margin-bottom:24px}
-    .form-header h2{margin:12px 0 6px}
-    .form-icon{font-size:42px;display:block}
-    .field{display:grid;gap:6px}
-    .field-label{font-size:13px;font-weight:600;color:var(--mut)}
-    .in{background:var(--input-bg);border:1px solid var(--card-border);border-radius:12px;color:var(--ink);padding:14px 16px;width:100%;transition:all .3s;font-size:15px}
-    .in:focus{outline:none;border-color:var(--pri);box-shadow:0 0 0 3px rgba(0,151,160,.15)}
-    .in::placeholder{color:var(--mut);opacity:.7}
-    select.in{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
-    textarea.in{resize:vertical;min-height:100px}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .form-grid .full-width{grid-column:1/-1}
-    .form-footer{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-    .submit-btn{flex:1;justify-content:center;gap:10px;padding:16px 24px;font-size:16px}
-    .submit-btn svg{transition:transform .2s}
-    .submit-btn:hover svg{transform:translateX(4px)}
-    .whatsapp-btn{background:#25D366;border-color:#25D366;color:#fff;gap:8px}
-    .whatsapp-btn:hover{background:#20bd5a}
-    .form-note{font-size:12px;color:var(--mut);margin-top:16px;text-align:center}
-    .form-success{text-align:center;padding:40px 20px}
-    .success-icon{width:70px;height:70px;background:var(--pri);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:20px;animation:scaleIn .4s ease}
-    .form-success h3{margin:0 0 10px;font-size:24px}
-    .form-success p{color:var(--mut);margin-bottom:24px}
-    @keyframes scaleIn{0%{transform:scale(0)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
-    .submit-btn:disabled{opacity:.7;cursor:not-allowed}
-    .submit-btn.loading span{opacity:0}
-    .submit-btn.loading::after{content:"";position:absolute;width:20px;height:20px;border:2px solid transparent;border-top-color:#001a1d;border-radius:50%;animation:spin .6s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .submit-btn{position:relative}
-    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    @media(max-width:640px){.form-grid{grid-template-columns:1fr}}
-
-    /* Footer */
-    .footer{padding:26px 0;border-top:1px solid var(--line);background:var(--footer-bg);color:var(--mut);transition:all .3s}
-    
-    /* Smooth transitions for theme change */
-    html{transition:background .3s}
-    body{transition:background .3s, color .3s}
-
-    /* Responsive */
-    @media (max-width:1000px){.cards{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr 1fr}.areas{grid-template-columns:1fr 1fr}.cols-2{grid-template-columns:1fr}}
-    @media (max-width:640px){.cards{grid-template-columns:1fr}}
-    @media (max-width:920px){
-      /* Hide desktop nav; show hamburger & drawer */
-      .nav ul, header .btn{display:none}
-      .hamburger{display:inline-flex}
-      .mobile-drawer, .scrim{display:block}
-    }
-    @media (max-width:640px){.process{grid-template-columns:1fr 1fr}}
-    
-    /* FAQ Styling */
-    details{background:var(--faq-bg);border:1px solid var(--faq-border);border-radius:12px;padding:14px 16px;transition:all .3s}
-    details[open]{background:var(--panel-bg)}
-    summary{cursor:pointer;font-weight:600;color:var(--ink);list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    summary::after{content:"＋";font-size:18px;color:var(--pri);transition:transform .2s}
-    details[open] summary::after{content:"－"}
-    summary::-webkit-details-marker{display:none}
-    details .mut{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
-    
-    /* Prevent scroll when menu open */
-    body.noscroll{overflow:hidden}
-  </style>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/form.css">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Pirkanmaan Betonilattiat",
-    "image": "https://example.com/logo.svg",
-    "description": "Betonilattiat ja lattiavalut Pirkanmaalla. Maksuton kartoituskäynti, selkeä prosessi ja takuu.",
-    "areaServed": "Pirkanmaa",
-    "address": {"@type":"PostalAddress","addressRegion":"Pirkanmaa","addressCountry":"FI"},
-    "telephone": "+358 404157490",
-    "url": "https://example.com"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"Voiko valun tehdä talvella?","acceptedAnswer": {"@type":"Answer","text":"Kyllä, kun olosuhteet varmistetaan (lämpö, vedottomuus) ja massa valitaan oikein."}},
-      {"@type":"Question","name":"Milloin lattialla voi kävellä tai kuormittaa?","acceptedAnswer": {"@type":"Answer","text":"Kevyt kävely usein seuraavana päivänä. Suurempi kuormitus ajoitetaan kuivumisen mukaan."}},
-      {"@type":"Question","name":"Saako työlle takuun?","acceptedAnswer": {"@type":"Answer","text":"Kyllä. Annamme tehdylle työlle takuun ja selkeät jälkihoito-ohjeet."}}
-    ]
-  }
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Pirkanmaan Betonilattiat","description":"Betonilattiat ja lattiavalut Pirkanmaalla.","areaServed":"Pirkanmaa","address":{"@type":"PostalAddress","addressRegion":"Pirkanmaa","addressCountry":"FI"},"telephone":"+358 404157490"}
   </script>
 </head>
 <body>
@@ -252,70 +23,54 @@
     <div class="container nav">
       <div class="brand">
         <div class="brand-logo" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 17l6-6 4 4 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <span>Pirkanmaan Betonilattiat</span>
       </div>
-      <!-- Desktop nav (hidden on mobile via CSS) -->
       <ul>
         <li><a href="#palvelut">Palvelut</a></li>
         <li><a href="#prosessi">Prosessi</a></li>
         <li><a href="#laatu">Laatu</a></li>
-        <li><a href="#alueet">Alueet</a></li>
         <li><a href="#usein">FAQ</a></li>
         <li><a href="#yhteys">Yhteys</a></li>
       </ul>
       <div style="display:flex;align-items:center;gap:10px">
         <a class="btn" href="#kartoitus">Varaa maksuton kartoitus</a>
-        <!-- Theme Toggle -->
         <button class="theme-toggle" id="theme-toggle" aria-label="Vaihda teema">
-          <svg class="moon-icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-          <svg class="sun-icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
       </div>
-      <!-- NEW: Hamburger (shown on mobile only) -->
       <button class="hamburger" aria-label="Valikko" aria-controls="mobile-menu" aria-expanded="false"><span></span></button>
     </div>
-    <!-- NEW: Mobile drawer + scrim (only visible under 920px) -->
     <div class="scrim" id="scrim"></div>
     <nav id="mobile-menu" class="mobile-drawer" aria-hidden="true">
       <ul class="menu">
         <li><a href="#palvelut">Palvelut</a></li>
         <li><a href="#prosessi">Prosessi</a></li>
         <li><a href="#laatu">Laatu</a></li>
-        <li><a href="#alueet">Alueet</a></li>
         <li><a href="#usein">FAQ</a></li>
         <li><a href="#yhteys">Yhteys</a></li>
       </ul>
       <div class="cta">
         <a class="btn" href="#kartoitus">Varaa maksuton kartoitus</a>
         <button class="theme-toggle" id="theme-toggle-mobile" aria-label="Vaihda teema" style="margin-top:12px;width:100%">
-          <svg class="moon-icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-          <svg class="sun-icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
       </div>
     </nav>
   </header>
 
-  <!-- Hero with large background image -->
+  <!-- Hero -->
   <section class="hero" aria-label="Hero">
     <div class="container wrap">
       <span class="pill">Maksuton kartoituskäynti · Pirkanmaa</span>
       <h1>Betonilattiat ja lattiavalut Pirkanmaalla – huippulaatu, siisti työ, sovitut aikataulut</h1>
-      <p>Pirkanmaan Betonilattiat toteuttaa kestävät ja viimeistellyt betonilattiat omakotitaloihin, autotalleihin, varastoihin ja tuotantotiloihin. Keskitymme selkeään viestintään ja siistiin työjälkeen.</p>
+      <p>Pirkanmaan Betonilattiat toteuttaa kestävät ja viimeistellyt betonilattiat omakotitaloihin, autotalleihin, varastoihin ja tuotantotiloihin.</p>
       <div class="cta">
         <a class="btn" href="#kartoitus">Varaa maksuton kartoitus</a>
-        <a class="btn outline" href="#tarjous">Pyydä yhteydenotto</a>
+        <a class="btn outline" href="#yhteys">Pyydä yhteydenotto</a>
       </div>
       <div class="ribbon">
         <span class="badge">Selkeä prosessi</span>
@@ -328,12 +83,12 @@
   <section id="palvelut">
     <div class="container">
       <h2>Palvelut</h2>
-      <p class="mut">Ratkaisut sekä uudis- että saneerauskohteisiin. Suunnittelu, valu, viimeistely ja luovutus samalta kumppanilta.</p>
+      <p class="mut">Ratkaisut sekä uudis- että saneerauskohteisiin.</p>
       <div class="cards" style="margin-top:12px">
         <article class="card">
           <div class="b">
             <h3>Betonilattiavalut</h3>
-            <p>Tasainen ja kestävä alusta oikealla paksuudella ja raudoituksella. Suunnittelu → valu → luovutus selkein vaiheistuksin.</p>
+            <p>Tasainen ja kestävä alusta oikealla paksuudella ja raudoituksella.</p>
             <ul class="list">
               <li><span class="tic">✓</span><span>Asuin- ja varastotilat</span></li>
               <li><span class="tic">✓</span><span>Oikea massavalinta ja olosuhteet</span></li>
@@ -344,10 +99,10 @@
         <article class="card">
           <div class="b">
             <h3>Teräshierretty pinta</h3>
-            <p>Kova, siisti ja helppohoitoinen lopputulos autotalleihin ja varastoihin. Tarvittaessa pinnoitteet ja kovetteet.</p>
+            <p>Kova, siisti ja helppohoitoinen lopputulos autotalleihin ja varastoihin.</p>
             <ul class="list">
               <li><span class="tic">✓</span><span>Autotallit ja pientyöpajat</span></li>
-              <li><span class="tic">✓</span><span>Reunanauhat, suojaukset ja siistiminen</span></li>
+              <li><span class="tic">✓</span><span>Reunanauhat ja suojaukset</span></li>
               <li><span class="tic">✓</span><span>Jälkihoito- ja kuivumisohjeet</span></li>
             </ul>
           </div>
@@ -360,32 +115,32 @@
   <section id="prosessi">
     <div class="container">
       <h2>Näin etenemme</h2>
-      <p class="mut">Selkeä, toistettava prosessi varmistaa laadun ja aikataulut.</p>
+      <p class="mut">Selkeä prosessi varmistaa laadun ja aikataulut.</p>
       <div class="process" style="margin-top:12px">
-        <div class="step"><div class="num">1. Yhteydenotto</div><div class="mut">Kerro neliöt, osoite ja käyttötarkoitus. Saat nopeasti suuntaa-antavan arvion.</div></div>
-        <div class="step"><div class="num">2. Kartoitus</div><div class="mut">Maksuton kartoituskäynti: tarkistamme alustan, reunanauhat, paksuudet ja raudoituksen.</div></div>
-        <div class="step"><div class="num">3. Valmistelut</div><div class="mut">Suojaukset, tasolaser-mittaukset ja massan tilaus – kaikki valmiiksi valupäivään.</div></div>
-        <div class="step"><div class="num">4. Valu & viimeistely</div><div class="mut">Ammattimainen levitys ja hierto. Tarvittaessa pintakäsittely, hionta tai kiillotus.</div></div>
-        <div class="step"><div class="num">5. Luovutus</div><div class="mut">Kirjalliset ohjeet jälkihoitoon ja tarvittaessa kosteuden mittausraportti.</div></div>
+        <div class="step"><div class="num">1. Yhteydenotto</div><div class="mut">Kerro neliöt, osoite ja käyttötarkoitus.</div></div>
+        <div class="step"><div class="num">2. Kartoitus</div><div class="mut">Maksuton kartoituskäynti kohteessa.</div></div>
+        <div class="step"><div class="num">3. Valmistelut</div><div class="mut">Suojaukset ja massan tilaus.</div></div>
+        <div class="step"><div class="num">4. Valu</div><div class="mut">Ammattimainen levitys ja hierto.</div></div>
+        <div class="step"><div class="num">5. Luovutus</div><div class="mut">Ohjeet jälkihoitoon.</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Quality & KPIs -->
+  <!-- Quality -->
   <section id="laatu">
     <div class="container cols-2">
       <div class="panel">
         <h2>Laatu ja turvallisuus</h2>
-        <p class="mut">Käytämme tarkkoja tasolasereita, luotettavia betonimassoja sekä tehokkaita hierre- ja hiontakoneita. Työ tehdään työturvallisuus edellä ja olosuhteet (lämpö, vedottomuus, kosteus) varmistetaan ennen valua ja sen aikana.</p>
+        <p class="mut">Käytämme tarkkoja tasolasereita ja luotettavia betonimassoja.</p>
         <ul class="list" style="margin-top:8px">
-          <li><span class="tic">✓</span><span>Selkeät työvaiheet ja luovutus</span></li>
-          <li><span class="tic">✓</span><span>Selkeät jälkihoito-ohjeet</span></li>
-          <li><span class="tic">✓</span><span>Kosteusmittausraportti pyydettäessä</span></li>
+          <li><span class="tic">✓</span><span>Selkeät työvaiheet</span></li>
+          <li><span class="tic">✓</span><span>Jälkihoito-ohjeet</span></li>
+          <li><span class="tic">✓</span><span>Kosteusmittausraportti</span></li>
         </ul>
       </div>
       <div class="panel">
         <h2>Toimialue</h2>
-        <p class="mut">Tampere ja koko Pirkanmaa – tulemme nopeasti kohteelle.</p>
+        <p class="mut">Tampere ja koko Pirkanmaa.</p>
         <div class="areas" style="margin-top:8px">
           <a href="#">Tampere</a><a href="#">Pirkkala</a><a href="#">Nokia</a><a href="#">Ylöjärvi</a>
           <a href="#">Lempäälä</a><a href="#">Kangasala</a><a href="#">Valkeakoski</a><a href="#">Orivesi</a>
@@ -394,15 +149,15 @@
     </div>
   </section>
 
-  <!-- Free Survey CTA -->
+  <!-- Contact Form Section -->
   <section id="kartoitus">
     <div class="container cols-2">
       <div class="panel">
         <h2>Maksuton kartoituskäynti</h2>
-        <p>Tarjoamme maksuttoman kartoituskäynnin Pirkanmaan alueella. Kartoituksessa tarkistamme alustan, paksuuden, reunanauhat, läpiviennit ja mahdolliset haasteet, jotta saat tarkan tarjouksen ja realistisen aikataulun.</p>
+        <p>Tarjoamme maksuttoman kartoituskäynnin Pirkanmaan alueella.</p>
         <ul class="list" style="margin-top:8px">
-          <li><span class="tic">✓</span><span>Suositukset massalle, raudoitukselle ja viimeistelylle</span></li>
-          <li><span class="tic">✓</span><span>Mahdollinen kosteuden mittaus ja raportointi</span></li>
+          <li><span class="tic">✓</span><span>Suositukset massalle ja viimeistelylle</span></li>
+          <li><span class="tic">✓</span><span>Kosteuden mittaus ja raportointi</span></li>
         </ul>
         <div class="cta-row">
           <a class="btn" href="#kartoitus-form">Varaa kartoitus</a>
@@ -412,88 +167,35 @@
       <div class="panel form-panel" id="kartoitus-form">
         <div class="form-header">
           <span class="form-icon">📋</span>
-          <h2>Pyydä yhteydenotto / varaa kartoitus</h2>
-          <p class="mut">Täytä lomake ja otamme sinuun yhteyttä 24h sisällä.</p>
+          <h2>Pyydä yhteydenotto</h2>
+          <p class="mut">Otamme yhteyttä 24h sisällä.</p>
         </div>
-        <form action="https://formsubmit.co/ajax/pkslattiat@gmail.com" method="POST" class="contact-form" id="contact-form">
-          <!-- Formsubmit settings -->
+        <form action="https://formsubmit.co/ajax/pkslattiat@gmail.com" method="POST" id="contact-form">
           <input type="hidden" name="_subject" value="Uusi yhteydenotto - Pirkanmaan Betonilattiat">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
           <input type="text" name="_honey" style="display:none">
-          
           <div class="form-grid">
-            <label class="field">
-              <span class="field-label">Nimi *</span>
-              <input class="in" name="Nimi" required placeholder="Etunimi Sukunimi"/>
-            </label>
-            <label class="field">
-              <span class="field-label">Puhelin *</span>
-              <input class="in" name="Puhelin" required type="tel" placeholder="040 123 4567"/>
-            </label>
-            <label class="field">
-              <span class="field-label">Sähköposti *</span>
-              <input class="in" name="Sähköposti" required type="email" placeholder="nimi@esimerkki.fi"/>
-            </label>
-            <label class="field">
-              <span class="field-label">Kohteen osoite *</span>
-              <input class="in" name="Osoite" required placeholder="Katu 1, Kaupunki"/>
-            </label>
-            <label class="field">
-              <span class="field-label">Neliöt (m²) *</span>
-              <input class="in" name="Neliöt" required type="number" min="1" placeholder="esim. 65"/>
-            </label>
-            <label class="field">
-              <span class="field-label">Käyttötarkoitus</span>
-              <select class="in" name="Käyttötarkoitus">
-                <option value="Autotalli">Autotalli</option>
-                <option value="Varasto">Varasto</option>
-                <option value="Asuintila">Asuintila</option>
-                <option value="Tuotantotila">Tuotantotila</option>
-                <option value="Muu">Muu</option>
-              </select>
-            </label>
-            <label class="field">
-              <span class="field-label">Toivottu ajankohta</span>
-              <input class="in" name="Ajankohta" type="date"/>
-            </label>
-            <label class="field full-width">
-              <span class="field-label">Lisätiedot</span>
-              <textarea class="in" name="Lisätiedot" rows="4" placeholder="Kuvaus kohteesta, mahdolliset haasteet, erityistoiveet…"></textarea>
-            </label>
+            <label class="field"><span class="field-label">Nimi *</span><input class="in" name="Nimi" required placeholder="Etunimi Sukunimi"/></label>
+            <label class="field"><span class="field-label">Puhelin *</span><input class="in" name="Puhelin" required type="tel" placeholder="040 123 4567"/></label>
+            <label class="field"><span class="field-label">Sähköposti *</span><input class="in" name="Sähköposti" required type="email" placeholder="nimi@esimerkki.fi"/></label>
+            <label class="field"><span class="field-label">Osoite *</span><input class="in" name="Osoite" required placeholder="Katu 1, Kaupunki"/></label>
+            <label class="field"><span class="field-label">Neliöt (m²) *</span><input class="in" name="Neliöt" required type="number" min="1" placeholder="65"/></label>
+            <label class="field"><span class="field-label">Käyttötarkoitus</span><select class="in" name="Käyttötarkoitus"><option>Autotalli</option><option>Varasto</option><option>Asuintila</option><option>Tuotantotila</option></select></label>
+            <label class="field full-width"><span class="field-label">Lisätiedot</span><textarea class="in" name="Lisätiedot" rows="3" placeholder="Kuvaus kohteesta..."></textarea></label>
           </div>
           <div class="form-footer">
-            <button class="btn submit-btn" type="submit">
-              <span>Lähetä viesti</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
-            <a class="btn outline whatsapp-btn" href="https://wa.me/358404157490" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              <span>WhatsApp</span>
-            </a>
+            <button class="btn submit-btn" type="submit"><span>Lähetä</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+            <a class="btn outline whatsapp-btn" href="https://wa.me/358404157490" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span>WhatsApp</span></a>
           </div>
           <p class="form-note">* Pakolliset kentät</p>
         </form>
-        <!-- Success Message (hidden by default) -->
         <div class="form-success" id="form-success" style="display:none">
           <div class="success-icon">✓</div>
-          <h3>Kiitos yhteydenotostasi!</h3>
-          <p>Olemme vastaanottaneet viestisi ja otamme sinuun yhteyttä mahdollisimman pian, yleensä 24 tunnin sisällä.</p>
-          <button class="btn outline" onclick="resetForm()">Lähetä uusi viesti</button>
+          <h3>Kiitos!</h3>
+          <p>Otamme yhteyttä 24h sisällä.</p>
+          <button class="btn outline" onclick="resetForm()">Uusi viesti</button>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- References -->
-  <section id="referenssit">
-    <div class="container">
-      <h2>Referenssejä</h2>
-      <p class="mut">Esimerkkejä toteutuksista – pyydä lisää kohde-esimerkkejä.</p>
-      <div class="cards" style="margin-top:12px">
-        <div class="card"><div class="b"><h3>Autotalli, Nokia (42 m²)</h3><p>Teräshierretty pinta, paksuus 10 cm, kuivumisohjeistus ja luovutus 3 vrk kuluttua.</p></div></div>
-        <div class="card"><div class="b"><h3>Varastotila, Tampere (120 m²)</h3><p>Valu ja hionta, pölynsidonta. Aikataulu sovitettu muiden urakoiden mukaan.</p></div></div>
-        <div class="card"><div class="b"><h3>Asuintila, Ylöjärvi (75 m²)</h3><p>Lattialämmitys + valu, massavalinta ja kosteuden mittausraportti.</p></div></div>
       </div>
     </div>
   </section>
@@ -503,10 +205,9 @@
     <div class="container">
       <h2>Usein kysyttyä</h2>
       <div style="display:grid;gap:12px;margin-top:10px">
-        <details open><summary>Voiko valun tehdä talvella?</summary><div class="mut">Kyllä, kun olosuhteet varmistetaan (lämpö, vedottomuus) ja massa valitaan oikein.</div></details>
-        <details><summary>Milloin lattialla voi kävellä tai kuormittaa?</summary><div class="mut">Kevyt kävely usein seuraavana päivänä. Suurempi kuormitus ja pinnoitteet ajoitetaan kuivumisen mukaan.</div></details>
-        <details><summary>Saako työlle takuun?</summary><div class="mut">Kyllä. Annamme tehdylle työlle takuun ja selkeät jälkihoito-ohjeet.</div></details>
-        <details><summary>Voinko hyödyntää kotitalousvähennystä?</summary><div class="mut">Joissain tapauksissa kyllä – tarkista ajantasaiset ehdot verottajalta.</div></details>
+        <details open><summary>Voiko valun tehdä talvella?</summary><div class="mut">Kyllä, kun olosuhteet varmistetaan.</div></details>
+        <details><summary>Milloin lattialla voi kävellä?</summary><div class="mut">Kevyt kävely usein seuraavana päivänä.</div></details>
+        <details><summary>Saako työlle takuun?</summary><div class="mut">Kyllä, annamme takuun ja jälkihoito-ohjeet.</div></details>
       </div>
     </div>
   </section>
@@ -517,15 +218,13 @@
       <div class="panel">
         <h2>Yhteystiedot</h2>
         <p><strong>Pirkanmaan Betonilattiat</strong><br>Veli-Pekka Salonen<br>Pirkanmaa, Suomi</p>
-        <p class="mut">Soita tai lähetä viesti – vastaamme nopeasti.</p>
         <p><strong>Puhelin:</strong> <a href="tel:+358404157490">040 415 7490</a><br>
            <strong>Sähköposti:</strong> <a href="mailto:pkslattiat@gmail.com">pkslattiat@gmail.com</a><br>
-           <strong>WhatsApp:</strong> <a href="https://wa.me/358404157490" target="_blank" rel="noopener">040 415 7490</a></p>
+           <strong>WhatsApp:</strong> <a href="https://wa.me/358404157490">040 415 7490</a></p>
       </div>
       <div class="panel">
-        <h2>Aukioloajat & Laskutus</h2>
+        <h2>Aukioloajat</h2>
         <p class="mut">Ma–Pe 7:30–18:00 · La sopimuksen mukaan</p>
-        <p class="mut">Y-tunnus: 0000000-0 · ALV: FI00000000</p>
       </div>
     </div>
   </section>
@@ -533,134 +232,11 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <div>© <span id="year"></span> Pirkanmaan Betonilattiat — Kaikki oikeudet pidätetään.</div>
-      <div style="display:flex;gap:14px"><a href="#">Tietosuoja</a><a href="#">Evästeet</a><a href="#">Sivukartta</a></div>
+      <div>© <span id="year"></span> Pirkanmaan Betonilattiat</div>
+      <div style="display:flex;gap:14px"><a href="#">Tietosuoja</a><a href="#">Evästeet</a></div>
     </div>
   </footer>
 
-  <script>
-    // Mobile menu toggle
-    const burger = document.querySelector('.hamburger');
-    const drawer = document.getElementById('mobile-menu');
-    const scrim = document.getElementById('scrim');
-    function closeMenu(){
-      burger.setAttribute('aria-expanded','false');
-      drawer.classList.remove('open');
-      drawer.setAttribute('aria-hidden','true');
-      scrim.classList.remove('open');
-      document.body.classList.remove('noscroll');
-    }
-    function openMenu(){
-      burger.setAttribute('aria-expanded','true');
-      drawer.classList.add('open');
-      drawer.setAttribute('aria-hidden','false');
-      scrim.classList.add('open');
-      document.body.classList.add('noscroll');
-    }
-    burger.addEventListener('click',()=>{
-      const expanded = burger.getAttribute('aria-expanded') === 'true';
-      expanded ? closeMenu() : openMenu();
-    });
-    scrim.addEventListener('click', closeMenu);
-    // close on ESC
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
-    // close after clicking a link
-    drawer.addEventListener('click', (e)=>{
-      if(e.target.matches('a')) closeMenu();
-    });
-    // ensure ARIA resets on resize up
-    window.addEventListener('resize',()=>{
-      if(window.innerWidth>920) closeMenu();
-    });
-    // Footer year
-    document.getElementById('year').textContent=new Date().getFullYear();
-    
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-    const html = document.documentElement;
-    
-    // Check for saved theme or system preference
-    function getPreferredTheme() {
-      const saved = localStorage.getItem('theme');
-      if (saved) return saved;
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    }
-    
-    // Apply theme
-    function setTheme(theme) {
-      if (theme === 'light') {
-        html.setAttribute('data-theme', 'light');
-      } else {
-        html.removeAttribute('data-theme');
-      }
-      localStorage.setItem('theme', theme);
-    }
-    
-    // Toggle theme
-    function toggleTheme() {
-      const current = html.getAttribute('data-theme');
-      setTheme(current === 'light' ? 'dark' : 'light');
-    }
-    
-    // Initialize theme
-    setTheme(getPreferredTheme());
-    
-    // Toggle theme on button click
-    themeToggle.addEventListener('click', toggleTheme);
-    themeToggleMobile.addEventListener('click', toggleTheme);
-    
-    // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        setTheme(e.matches ? 'light' : 'dark');
-      }
-    });
-    
-    // Contact Form AJAX Submit
-    const contactForm = document.getElementById('contact-form');
-    const formSuccess = document.getElementById('form-success');
-    const submitBtn = contactForm.querySelector('.submit-btn');
-    
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      // Show loading state
-      submitBtn.disabled = true;
-      submitBtn.classList.add('loading');
-      
-      try {
-        const formData = new FormData(contactForm);
-        const response = await fetch(contactForm.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-        
-        if (response.ok) {
-          // Show success message
-          contactForm.style.display = 'none';
-          formSuccess.style.display = 'block';
-        } else {
-          throw new Error('Form submission failed');
-        }
-      } catch (error) {
-        alert('Virhe lähetyksessä. Yritä uudelleen tai soita meille.');
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('loading');
-      }
-    });
-    
-    // Reset form function
-    function resetForm() {
-      contactForm.reset();
-      contactForm.style.display = 'block';
-      formSuccess.style.display = 'none';
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('loading');
-    }
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
