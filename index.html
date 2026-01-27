@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/form.css">
   <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/cookie-banner.css">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"LocalBusiness","name":"Pirkanmaan Betonilattiat","description":"Betonilattiat ja lattiavalut Pirkanmaalla.","areaServed":"Pirkanmaa","address":{"@type":"PostalAddress","addressRegion":"Pirkanmaa","addressCountry":"FI"},"telephone":"+358 404157490"}
   </script>
@@ -244,10 +245,40 @@
   <footer class="footer">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <div>© <span id="year"></span> Pirkanmaan Betonilattiat</div>
-      <div style="display:flex;gap:14px"><a href="#">Tietosuoja</a><a href="#">Evästeet</a></div>
+      <div style="display:flex;gap:14px"><a href="tietosuoja.html">Tietosuoja</a><a href="evasteet.html">Evästeet</a></div>
     </div>
   </footer>
 
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookie-banner">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        <p>Käytämme evästeitä parantaaksemme käyttökokemustasi. Jatkamalla sivuston käyttöä hyväksyt <a href="evasteet.html">evästekäytäntömme</a>.</p>
+      </div>
+      <div class="cookie-buttons">
+        <button class="cookie-btn accept" onclick="acceptCookies()">Hyväksy</button>
+        <a href="evasteet.html" class="cookie-btn settings">Lisätietoja</a>
+      </div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
+  <script>
+    // Cookie Banner
+    const cookieBanner = document.getElementById('cookie-banner');
+    
+    function acceptCookies() {
+      localStorage.setItem('cookiesAccepted', 'true');
+      cookieBanner.classList.remove('show');
+      setTimeout(() => cookieBanner.classList.add('hidden'), 400);
+    }
+    
+    // Show banner if not accepted
+    if (!localStorage.getItem('cookiesAccepted')) {
+      setTimeout(() => cookieBanner.classList.add('show'), 1000);
+    } else {
+      cookieBanner.classList.add('hidden');
+    }
+  </script>
 </body>
 </html>

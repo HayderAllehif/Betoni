@@ -1,0 +1,120 @@
+/* ========================================
+   Cookie Consent Banner
+   ======================================== */
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--panel-bg);
+  border-top: 1px solid var(--card-border);
+  padding: 16px;
+  z-index: 1000;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+
+.cookie-banner.show {
+  transform: translateY(0);
+}
+
+.cookie-banner.hidden {
+  display: none;
+}
+
+.cookie-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cookie-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.cookie-text p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--mut);
+  line-height: 1.5;
+}
+
+.cookie-text a {
+  color: var(--pri);
+  text-decoration: underline;
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.cookie-btn.accept {
+  background: var(--pri);
+  color: #001a1d;
+}
+
+.cookie-btn.accept:hover {
+  background: var(--pri-2);
+}
+
+.cookie-btn.settings {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.cookie-btn.settings:hover {
+  background: var(--step-bg);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .cookie-banner {
+    padding: 16px;
+  }
+  
+  .cookie-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cookie-text {
+    min-width: 100%;
+  }
+  
+  .cookie-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .cookie-btn {
+    width: 100%;
+    padding: 14px;
+  }
+}
+
+/* Safe area for notched phones */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .cookie-banner {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+}
