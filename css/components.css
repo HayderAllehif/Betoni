@@ -126,6 +126,15 @@
   background: rgba(0, 179, 189, 0.2);
   border-color: rgba(0, 179, 189, 0.4);
 }
+.badge.highlight {
+  background: linear-gradient(135deg, rgba(0, 179, 189, 0.4), rgba(0, 179, 189, 0.2));
+  border-color: rgba(0, 179, 189, 0.6);
+  box-shadow: 0 4px 25px rgba(0, 179, 189, 0.3);
+}
+.badge.highlight:hover {
+  background: linear-gradient(135deg, rgba(0, 179, 189, 0.5), rgba(0, 179, 189, 0.3));
+  border-color: rgba(0, 179, 189, 0.8);
+}
 .badge::before {
   content: "✓";
   display: inline-flex;
