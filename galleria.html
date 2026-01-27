@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Galleria | Pirkanmaan Betonilattiat</title>
-  <meta name="description" content="Pirkanmaan Betonilattiat - Katso esimerkkejä toteutuksistamme. Betonilattiat, teräshierretyt pinnat ja lattiavalut." />
+  <meta name="description" content="Pirkanmaan Betonilattiat - Katso esimerkkejä toteutuksistamme." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,7 +12,168 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/mobile.css">
-  <link rel="stylesheet" href="css/gallery.css">
+  <style>
+    .gallery-hero {
+      padding: 80px 0 40px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--step-bg) 0%, var(--bg) 100%);
+    }
+    .gallery-hero h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      margin: 0 0 12px;
+    }
+    .gallery-hero p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--mut);
+    }
+    .gallery-section {
+      padding: 40px 0 80px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--card-border);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s;
+    }
+    .gallery-item:hover::after {
+      background: rgba(0,0,0,0.2);
+    }
+    
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+    .lightbox-close:hover {
+      background: var(--pri);
+      color: #001a1d;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-nav:hover {
+      background: var(--pri);
+      color: #001a1d;
+    }
+    .lightbox-nav.prev { left: 20px; }
+    .lightbox-nav.next { right: 20px; }
+    .lightbox-content img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* CTA */
+    .gallery-cta {
+      padding: 0 0 60px;
+    }
+    .cta-box {
+      background: var(--panel-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .cta-content h2 { margin: 0 0 8px; }
+    .cta-content p { margin: 0; color: var(--mut); }
+    .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .gallery-hero { padding: 60px 0 30px; }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .gallery-item { border-radius: 8px; }
+      .cta-box {
+        padding: 24px;
+        flex-direction: column;
+        text-align: center;
+      }
+      .cta-buttons {
+        width: 100%;
+        flex-direction: column;
+      }
+      .cta-buttons .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .lightbox-nav.prev { left: 10px; }
+      .lightbox-nav.next { right: 10px; }
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -32,22 +193,8 @@
   <!-- Hero -->
   <section class="gallery-hero">
     <div class="container">
-      <span class="pill">Referenssit</span>
       <h1>Galleria</h1>
-      <p class="mut">Esimerkkejä toteutuksistamme Pirkanmaan alueella. Autotallit, varastot, asuintilat ja tuotantotilat.</p>
-    </div>
-  </section>
-
-  <!-- Filter -->
-  <section class="gallery-filter">
-    <div class="container">
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">Kaikki</button>
-        <button class="filter-btn" data-filter="valu">Valutyöt</button>
-        <button class="filter-btn" data-filter="hierto">Teräshierto</button>
-        <button class="filter-btn" data-filter="asuintila">Asuintilat</button>
-        <button class="filter-btn" data-filter="tuotanto">Tuotanto</button>
-      </div>
+      <p>Esimerkkejä toteutuksistamme Pirkanmaan alueella</p>
     </div>
   </section>
 
@@ -55,253 +202,60 @@
   <section class="gallery-section">
     <div class="container">
       <div class="gallery-grid">
-        
-        <!-- Item 1: Raudoitus ja valu -->
-        <div class="gallery-item" data-category="valu">
-          <div class="gallery-image">
-            <img src="media/gallery/01-raudoitus-valu.jpg" alt="Raudoitus ja betonivalu" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Valutyö</span>
-            <h3>Perustuksen valu</h3>
-            <p>Raudoitus ja lattialämmitysputket valmiina</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(0)">
+          <img src="media/gallery/01-raudoitus-valu.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 2: Asuintila valu -->
-        <div class="gallery-item" data-category="asuintila">
-          <div class="gallery-image">
-            <img src="media/gallery/02-asuintila-valu.jpg" alt="Asuintilan betonilattia" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Asuintila</span>
-            <h3>Omakotitalo</h3>
-            <p>Valmis betonilattia ennen pintakäsittelyä</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(1)">
+          <img src="media/gallery/02-asuintila-valu.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 3: Hionta -->
-        <div class="gallery-item" data-category="hierto">
-          <div class="gallery-image">
-            <img src="media/gallery/03-hionta.jpg" alt="Lattian hionta" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Hionta</span>
-            <h3>Betonin hionta</h3>
-            <p>Lattian hionta ja tasoitus</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(2)">
+          <img src="media/gallery/03-hionta.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 4: Tuotantotila hierto -->
-        <div class="gallery-item" data-category="tuotanto">
-          <div class="gallery-image">
-            <img src="media/gallery/04-tuotanto-hierto.jpg" alt="Tuotantotilan lattia" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Tuotanto</span>
-            <h3>Teollisuushalli</h3>
-            <p>Teräshierretty teollisuuslattia</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(3)">
+          <img src="media/gallery/04-tuotanto-hierto.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 5: Ulkolattia -->
-        <div class="gallery-item" data-category="tuotanto">
-          <div class="gallery-image">
-            <img src="media/gallery/05-ulkolattia.jpg" alt="Ulkolattia" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Tuotanto</span>
-            <h3>Lastauslaituri</h3>
-            <p>Ulkotilan betonilattia</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(4)">
+          <img src="media/gallery/05-ulkolattia.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 6: Lattiakaivo -->
-        <div class="gallery-item" data-category="hierto">
-          <div class="gallery-image">
-            <img src="media/gallery/06-lattiakaivo.jpg" alt="Lattiakaivo" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Viimeistely</span>
-            <h3>Lattiakaivo</h3>
-            <p>Siisti viimeistely kaivon ympärillä</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(5)">
+          <img src="media/gallery/06-lattiakaivo.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 7: Autotalli hierto -->
-        <div class="gallery-item" data-category="hierto">
-          <div class="gallery-image">
-            <img src="media/gallery/07-autotalli-hierto.jpg" alt="Autotallin lattia" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Teräshierto</span>
-            <h3>Autotalli</h3>
-            <p>Teräshierretty pinta</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(6)">
+          <img src="media/gallery/07-autotalli-hierto.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 8: Iso asuintila -->
-        <div class="gallery-item" data-category="asuintila">
-          <div class="gallery-image">
-            <img src="media/gallery/08-iso-asuintila.jpg" alt="Suuri asuintila" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Asuintila</span>
-            <h3>Omakotitalo</h3>
-            <p>Laaja asuintilan lattia</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(7)">
+          <img src="media/gallery/08-iso-asuintila.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 9: Iso valu -->
-        <div class="gallery-item" data-category="valu">
-          <div class="gallery-image">
-            <img src="media/gallery/09-iso-valu.jpg" alt="Suuri betonivalu" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Valutyö</span>
-            <h3>Suuri betonivalu</h3>
-            <p>Betoniauto ja pumppuauto työssä</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(8)">
+          <img src="media/gallery/09-iso-valu.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 10: Hiertokone työssä -->
-        <div class="gallery-item" data-category="hierto">
-          <div class="gallery-image">
-            <img src="media/gallery/10-hiertokone.jpg" alt="Hiertokone työssä" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Teräshierto</span>
-            <h3>Teräshierto</h3>
-            <p>Hiertokone tasoittaa pinnan</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(9)">
+          <img src="media/gallery/10-hiertokone.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 11: Moderni asuintila -->
-        <div class="gallery-item" data-category="asuintila">
-          <div class="gallery-image">
-            <img src="media/gallery/11-moderni-asuintila.jpg" alt="Moderni asuintila" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Asuintila</span>
-            <h3>Moderni omakotitalo</h3>
-            <p>Avara olohuone ja ruokailutila</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(10)">
+          <img src="media/gallery/11-moderni-asuintila.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 12: Ulkolaatta valmis -->
-        <div class="gallery-item" data-category="valu">
-          <div class="gallery-image">
-            <img src="media/gallery/12-ulkolaatta.jpg" alt="Valmis ulkolaatta" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Valutyö</span>
-            <h3>Perustuslaatta</h3>
-            <p>Valmis laatta kesäpäivänä</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(11)">
+          <img src="media/gallery/12-ulkolaatta.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-        <!-- Item 13: Varasto lattia -->
-        <div class="gallery-item" data-category="asuintila">
-          <div class="gallery-image">
-            <img src="media/gallery/13-varasto-lattia.jpg" alt="Varaston lattia" loading="lazy">
-            <div class="gallery-overlay">
-              <button class="zoom-btn" onclick="openLightbox(this)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="gallery-info">
-            <span class="gallery-tag">Asuintila</span>
-            <h3>Varastotila</h3>
-            <p>Tasainen betonilattia</p>
-          </div>
+        <div class="gallery-item" onclick="openLightbox(12)">
+          <img src="media/gallery/13-varasto-lattia.jpg" alt="Betonilattia" loading="lazy">
         </div>
-
-      </div>
-
-      <!-- Empty state -->
-      <div class="gallery-empty" id="gallery-empty" style="display:none">
-        <div class="empty-icon">📷</div>
-        <h3>Ei kuvia tässä kategoriassa</h3>
-        <p>Valitse toinen kategoria tai näytä kaikki.</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
+  <!-- CTA -->
   <section class="gallery-cta">
     <div class="container">
       <div class="cta-box">
         <div class="cta-content">
           <h2>Haluatko samanlaisen lattian?</h2>
-          <p>Ota yhteyttä ja pyydä maksuton kartoitus kohteellesi.</p>
+          <p>Ota yhteyttä ja pyydä maksuton kartoitus.</p>
         </div>
         <div class="cta-buttons">
           <a class="btn" href="index.html#kartoitus">Varaa kartoitus</a>
-          <a class="btn outline" href="tel:+358404157490">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Soita nyt
-          </a>
+          <a class="btn outline" href="tel:+358404157490">Soita nyt</a>
         </div>
       </div>
     </div>
@@ -312,15 +266,14 @@
     <button class="lightbox-close" onclick="closeLightbox()">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <button class="lightbox-nav prev" onclick="navigateLightbox(-1)">
+    <button class="lightbox-nav prev" onclick="navigate(-1)">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
-    <button class="lightbox-nav next" onclick="navigateLightbox(1)">
+    <button class="lightbox-nav next" onclick="navigate(1)">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
     </button>
     <div class="lightbox-content">
-      <img id="lightbox-img" src="" alt="">
-      <div class="lightbox-caption" id="lightbox-caption"></div>
+      <img id="lightbox-img" src="" alt="Betonilattia">
     </div>
   </div>
 
@@ -338,47 +291,15 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Filter
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const emptyState = document.getElementById('gallery-empty');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        let visibleCount = 0;
-        galleryItems.forEach(item => {
-          if (filter === 'all' || item.dataset.category === filter) {
-            item.style.display = 'block';
-            item.style.animation = 'fadeIn 0.4s ease';
-            visibleCount++;
-          } else {
-            item.style.display = 'none';
-          }
-        });
-        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-      });
-    });
-
-    // Lightbox
+    
+    const images = Array.from(document.querySelectorAll('.gallery-item img')).map(img => img.src);
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxCaption = document.getElementById('lightbox-caption');
     let currentIndex = 0;
-    let visibleImages = [];
 
-    function openLightbox(btn) {
-      const item = btn.closest('.gallery-item');
-      const img = item.querySelector('img');
-      const title = item.querySelector('h3').textContent;
-      const desc = item.querySelector('.gallery-info p').textContent;
-      visibleImages = Array.from(document.querySelectorAll('.gallery-item')).filter(i => i.style.display !== 'none');
-      currentIndex = visibleImages.indexOf(item);
-      lightboxImg.src = img.src;
-      lightboxCaption.innerHTML = `<strong>${title}</strong><br>${desc}`;
+    function openLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = images[currentIndex];
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -388,24 +309,22 @@
       document.body.style.overflow = '';
     }
 
-    function navigateLightbox(direction) {
-      currentIndex += direction;
-      if (currentIndex < 0) currentIndex = visibleImages.length - 1;
-      if (currentIndex >= visibleImages.length) currentIndex = 0;
-      const item = visibleImages[currentIndex];
-      const img = item.querySelector('img');
-      const title = item.querySelector('h3').textContent;
-      const desc = item.querySelector('.gallery-info p').textContent;
-      lightboxImg.src = img.src;
-      lightboxCaption.innerHTML = `<strong>${title}</strong><br>${desc}`;
+    function navigate(dir) {
+      currentIndex += dir;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      if (currentIndex >= images.length) currentIndex = 0;
+      lightboxImg.src = images[currentIndex];
     }
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') navigateLightbox(-1);
-      if (e.key === 'ArrowRight') navigateLightbox(1);
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
     });
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
   </script>
 </body>
 </html>
