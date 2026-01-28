@@ -1,0 +1,16 @@
+{
+  "name": "Pirkanmaan Betonilattiat",
+  "short_name": "PBetoni",
+  "description": "Betonilattiat ja lattiavalut Pirkanmaalla",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#00b3bd",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Robots.txt for pkslattiat.fi
+# Pirkanmaan Betonilattiat
+
+User-agent: *
+Allow: /
+Disallow: /tietosuoja
+Disallow: /evasteet
+
+# Sitemap
+Sitemap: https://pkslattiat.fi/sitemap.xml

@@ -42,27 +42,27 @@ header {
   padding: 4px;
 }
 .brand-logo .logo-p {
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 900;
   color: var(--logo-stroke);
   line-height: 1;
-  margin-bottom: -2px;
+  margin-bottom: -1px;
 }
 .brand-logo .logo-betoni {
-  font-size: 6px;
+  font-size: 7px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   color: var(--logo-stroke);
 }
 .brand-logo.small {
   width: 34px; height: 34px;
 }
 .brand-logo.small .logo-p {
-  font-size: 14px;
+  font-size: 11px;
 }
 .brand-logo.small .logo-betoni {
-  font-size: 5px;
+  font-size: 6px;
 }
 .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
 .nav a { color: var(--ink); opacity: 0.95; }
